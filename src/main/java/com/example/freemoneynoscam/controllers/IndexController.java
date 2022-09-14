@@ -1,10 +1,10 @@
 package com.example.freemoneynoscam.controllers;
 
+
+import com.example.freemoneynoscam.services.ValidateEmailService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
 @Controller
@@ -14,13 +14,27 @@ public class IndexController {
         return "index";
     }
 
+    @GetMapping("/home")
+    public String home(){
+        return "index";
+    }
+
     @PostMapping("/test")
     public String test(WebRequest dataFromForm){
-        System.out.println(dataFromForm.getParameter("email"));
-        System.out.println(dataFromForm.getParameter("email"));
-        System.out.println(dataFromForm.getParameter("email"));
-        System.out.println(dataFromForm.getParameter("email"));
-        System.out.println(dataFromForm.getParameter("email"));
+        if(new ValidateEmailService().isEmailValid(dataFromForm.getParameter("email"))){
+            System.out.println(dataFromForm.getParameter("email"));
+            return "redirect:/done";
+        }
         return "redirect:/";
+    }
+
+    @GetMapping("/done")
+    public String done(){
+        return "done";
+    }
+
+    @GetMapping("/emails")
+    public String emails(){
+        return "emails";
     }
 }

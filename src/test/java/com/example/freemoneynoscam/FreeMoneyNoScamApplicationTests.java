@@ -10,4 +10,5 @@ class FreeMoneyNoScamApplicationTests {
     void contextLoads() {
     }
 
+
 }
