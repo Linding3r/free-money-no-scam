@@ -5,10 +5,33 @@
     <link rel="stylesheet" th:href="@{style.css}" href="../static/style.css">
     <title>DONE</title>
 </head>
-<body>
-<section class="content">
+<style>
+    section {
+        width: 100px;
+        height: 100px;
+        position: relative;
+        animation-name: example;
+        animation-duration: 2s;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease-in-out;
+    }
+
+    @keyframes example {
+        0%   {left:-20%;}
+        50%  {left:20%;}
+        100% {left:-20%;}
+    }
+</style>
+<body class="body1">
+<audio src="/music/moneyCut.mp3" autoplay hidden></audio>
+<section class="content1">
   <h1>🤑 Well Done! You have now gotten Free Money 🤑</h1>
-    <button onclick="location.href = '/emails';">Check Emails</button>
+    <div>Registered email: <span th:text="${email}">EMAIL</span></div>
+    <br>
+    <br>
+    <button onclick="location.href = '/emails';">Email List</button>
+    <br>
+    <button onclick="location.href = '/home';">Home</button>
 </section>
 </body>
 </html>
