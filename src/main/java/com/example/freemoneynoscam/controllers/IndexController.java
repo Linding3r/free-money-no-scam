@@ -27,9 +27,11 @@ public class IndexController {
 
     @PostMapping("/test")
     public String test(@RequestParam("email") String email, RedirectAttributes redirectAttributes){
-        redirectAttributes.addAttribute("email", email);
-        rep.addToList(email);
-        return "redirect:/test";
+        if(new ValidateEmailService().isEmailValid(email)) {
+            redirectAttributes.addAttribute("email", email);
+            rep.addToList(email);
+            return "redirect:/test";
+        } else return "redirect:/home";
     }
 
     @GetMapping("/test")
